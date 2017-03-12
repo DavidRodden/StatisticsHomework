@@ -43,3 +43,22 @@ flight.stderr = sqrt(0.8*(1-0.8)/400)
 ```
 Since the standard error of the flight equates to being only 0.2, it is not likely that the flights will be within 0.03 of the true population proportion.
 Test
+
+###6.48
+
+```{r}
+me = 0.3
+z.star = qnorm(0.955)
+estimate.conservative = 0.5
+estimate.first = 0.7
+estimate.second = 0.9
+size.conservative = ceiling((z.star/me)^2 * estimate.conservative * (1 - estimate.conservative))
+size.conservative
+size.first = ceiling((z.star/me)^2 * estimate.first * (1 - estimate.first))
+size.first
+size.second = ceiling((z.star/me)^2 * estimate.second * (1 - estimate.second))
+size.second
+```
+The sample size needed for instances $p = 0.5, 0.7, 0.9$ respectively with $95$% confidence and a margin of error within $\pm3$% are `r size.conservative`, `r size.first`, and `r size.second` respectively.
+From the data observed above, we can see that with the elevation of our p estimate, the sample size needed to give decreases.
+
