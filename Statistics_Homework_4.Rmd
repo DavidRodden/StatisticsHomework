@@ -84,3 +84,15 @@ np = 25 * p; np
 nq = 25 * (1 - p); nq
 ```
 The sample size would not be large enough for the CLT to apply, as both $np$ and $n(p-1)$ must be $\geq$ 10.
+
+###6.134
+
+```{r}
+fiber = NutritionStudy$Fiber
+fiber.mean = mean(NutritionStudy$Fiber); fiber.mean
+fiber.se = sd(fiber)/sqrt(length(fiber)); fiber.se
+fiber.moe = fiber.se * 2; fiber.moe
+fiber.lower = fiber.mean - fiber.moe; fiber.lower
+fiber.upper = fiber.mean + fiber.moe; fiber.upper
+```
+To find a 95% confidence interval for the mean number of grams of fiber people eat in a day, we use the **NutritionStudy$Fiber** mean, and multiply its standard error by 2 to find our margin of error. Then we can find the upper and lower bounds by applying $mean \pm moe$. The average number of grams of fiber people eat in a day is between `r fiber.lower` grams and `r fiber.upper` grams.
