@@ -8,6 +8,7 @@ output: pdf_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library("Lock5withR", lib.loc="~/R/win-library/3.3")
+library("mosaic", lib.loc="~/R/win-library/3.3")
 ```
 
 ###5.40
@@ -96,3 +97,13 @@ fiber.lower = fiber.mean - fiber.moe; fiber.lower
 fiber.upper = fiber.mean + fiber.moe; fiber.upper
 ```
 To find a 95% confidence interval for the mean number of grams of fiber people eat in a day, we use the **NutritionStudy$Fiber** mean, and multiply its standard error by 2 to find our margin of error. Then we can find the upper and lower bounds by applying $mean \pm moe$. The average number of grams of fiber people eat in a day is between `r fiber.lower` grams and `r fiber.upper` grams.
+
+###6.152
+
+$H_0: \mu = 160; H_a: \mu > 160$
+```{r}
+dotplot(~Fouls, cex = 1.2, width = 0.2, data = NBAPlayers2011)
+favstats(~Fouls, data = NBAPlayers2011)
+p.value = pval(t.test(~Fouls, mu = 160, data = NBAPlayers2011)); p.value
+```
+Using our hypothesis, we are given a p-value of `r p.value`, which is $> 0.05$. Therefore, we accept the null hypothesis and reject that NBA players who play regularly have a mean number of fouls in a season greater than 160.
