@@ -42,3 +42,4 @@ flight.mean = 0.8
 flight.stderr = sqrt(0.8*(1-0.8)/400)
 ```
 Since the standard error of the flight equates to being only 0.2, it is not likely that the flights will be within 0.03 of the true population proportion.
+Test
