@@ -1,0 +1,44 @@
+---
+title: "Homework 4"
+author: "David Rodden"
+date: "March 6, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+###5.40
+```{r}
+old.mu = 62; old.sigma = 18
+studentA.old_score = 47
+studentB.old_score = 90
+studentA.z = (studentA.old_score - old.mu)/old.sigma
+studentB.z = (studentB.old_score - old.mu)/old.sigma
+studentA.z; studentB.z
+
+new.mu = 75; new.sigma = 10
+studentA.new_score = new.mu + studentA.z * new.sigma
+studentB.new_score = new.mu + studentB.z * new.sigma
+studentA.new_score; studentB.new_score
+```
+
+The new scores of the students who scored 47 and 90 would earn `r round(studentA.new_score, 2)` and `r round(studentB.new_score, 2)` respectively.
+
+###5.41
+
+```{r}
+mean = 45; st_dev = 8
+
+```
+*(a)*
+
+
+###6.24
+
+```{r}
+flight.mean = 0.8
+flight.stderr = sqrt(0.8*(1-0.8)/400)
+```
+Since the standard error of the flight equates to being only 0.2, it is not likely that the flights will be within 0.03 of the true population proportion.
