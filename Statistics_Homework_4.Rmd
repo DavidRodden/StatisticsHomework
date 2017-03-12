@@ -7,6 +7,7 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library("Lock5withR", lib.loc="~/R/win-library/3.3")
 ```
 
 ###5.40
@@ -62,3 +63,15 @@ size.second
 The sample size needed for instances $p = 0.5, 0.7, 0.9$ respectively with $95$% confidence and a margin of error within $\pm3$% are `r size.conservative`, `r size.first`, and `r size.second` respectively.
 From the data observed above, we can see that with the elevation of our p estimate, the sample size needed to give decreases.
 
+###6.54
+
+```{r}
+icu.status = ICUAdmissions$Status
+icu.size = length(icu.status)
+p.hat = sum(icu.status %in% 0)/icu.size; p.hat
+z.star = qnorm(0.955)
+se = sqrt(p.hat * (1 - p.hat)/icu.size); se
+ci.lower = round(p.hat - z.star * se, 3)
+ci.upper = round(p.hat + z.star * se, 3)
+```
+The confidence interval for the proportion of ICU patients who live is `r ci.lower` to `r ci.upper`.
