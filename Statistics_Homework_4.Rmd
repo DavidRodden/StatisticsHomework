@@ -30,12 +30,36 @@ The new scores of the students who scored 47 and 90 would earn `r round(studentA
 
 ###5.41
 
-```{r}
-mean = 45; st_dev = 8
-
-```
 *(a)*
+```{r}
+mean = 100; st_dev = 20
+z.lower = (60 - 100)/20; z.upper = (140 - 100)/20
+area.between = pnorm(2) - pnorm(-2)
+xpnorm(c(-2, 2))
+```
+The area between `r z.lower ` and `r z.upper` is `r area.between`, which is greater than 0.95, so this has been verified.
 
+*(b)*
+
+The proportion of values that fall within one standard deviation of the mean would be the area between -1 & 1 on a standard normal curve.
+```{r}
+area.between = pnorm(1) - pnorm(-1)
+xpnorm(c(-1, 1))
+```
+The area given is `r area.between`.
+
+*(c)*
+
+The proportion of values that fall within three standard deviations of the mean would be the area between -3 & 3 on a standard normal curve.
+```{r}
+area.between = pnorm(3) - pnorm(-3)
+xpnorm(c(-3, 3))
+```
+The area given is `r area.between`.
+
+*(d)*
+
+The answers to *(b)* and *(c)* would be the same as regardless of the normal distribution, z = $\pm 1, 3$ respectively for proportion of values that fall within one and three standard distributions.
 
 ###6.24
 
