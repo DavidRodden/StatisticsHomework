@@ -1,0 +1,16 @@
+---
+title: "Homework 5"
+author: "David Rodden"
+date: "March 25, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+###6.188
+
+###6.204
+
+###6.248
