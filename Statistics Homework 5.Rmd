@@ -7,9 +7,27 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library("Lock5withR", lib.loc="~/R/win-library/3.3")
 ```
 
 ###6.188
+```{r}
+total.male = length(which(ICUAdmissions$Sex == 0))
+total.female = length(which(ICUAdmissions$Sex == 1))
+dead.male = length(subset(ICUAdmissions, Sex == 0 & Status == 1))
+dead.female = length(subset(ICUAdmissions, Sex == 1 & Status == 1))
+deadProp.male = dead.male / total.male
+deadProp.female = dead.female / total.female
+deadProp.difference = deadProp.male - deadProp.female
+deadProp.se = sqrt(
+    (deadProp.male * (1 - deadProp.male) / total.male) + 
+    (deadProp.female * (1 - deadProp.female) / total.female))
+z.star = qnorm(.955)
+confidence.lower = deadProp.difference - z.star * deadProp.se; confidence.lower
+confidence.upper = deadProp.difference + z.star * deadProp.se; confidence.upper
+```
+
+The 95% confidence interval for the difference in the proportion who die between males and females is between `r confidence.lower` and `r confidence.upper`.
 
 ###6.204
 
