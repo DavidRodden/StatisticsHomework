@@ -19,6 +19,16 @@ dead.female = length(subset(ICUAdmissions, Sex == 1 & Status == 1))
 deadProp.male = dead.male / total.male
 deadProp.female = dead.female / total.female
 deadProp.difference = deadProp.male - deadProp.female
+```
+To ensure that the sample size is large enough in each group, we check that $n_1p_1, n_1(1-p_1), n_2p_2, n_2(1 - p_2) \geq 10$.
+```{r}
+male.test1 = total.male * deadProp.male; male.test1
+male.test2 = total.male * (1 - deadProp.male); male.test2
+female.test1 = total.female * deadProp.female; female.test1
+female.test2 = total.female * (1 - deadProp.female); female.test2
+```
+Since all are above, 10, we know that the sample size is large enough in each group.
+```{r}
 deadProp.se = sqrt(
     (deadProp.male * (1 - deadProp.male) / total.male) + 
     (deadProp.female * (1 - deadProp.female) / total.female))
