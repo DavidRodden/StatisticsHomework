@@ -45,17 +45,11 @@ $H_0: p_t = p_p; H_a: p_t > p_t$
 ```{r}
 size.thc = 79; size.proch = 78
 effective.thc = 36; effective.proch = 16
-prop.thc = effective.thc / size.thc
-prop.proch = effective.proch / size.proch
-prop.difference = prop.thc - prop.proch; prop.difference
-prop.se = sqrt(
-    (prop.thc * (1 - prop.thc) / size.thc) +
-      (prop.proch * (1 - prop.proch) / size.proch)
-)
-z = prop.difference / prop.se; z
-p.value = pnorm(1 - z)
+thc.test = prop.test(c(effective.thc, effective.proch), c(size.thc, size.proch),
+                     alternative = "greater")
+p.value = thc.test$p.value
 ```
-Since the p-value is `r p.value` and much greater than 0.01, per the significance level, we reject the alternate hypothesis.
+Since the p-value is $`r p.value`$, which is less than 0.01 per the significance level, we reject the null hypothesis in favor of the alternative hypothesis.
 
 *b*
 
