@@ -79,3 +79,4 @@ confidence.lower = fiber.difference - t.star * fiber.se
 confidence.upper = fiber.difference + t.star * fiber.se
 ```
 The 95% confidence interval for the difference in number of grams of fiber eaten in a day between males and females is between `r confidence.lower` and `r confidence.upper`.
+No difference between males and females is a plausible option for the population difference in number of grams of fiber eaten because 0 falls within the 95% confidence interval displayed above.
