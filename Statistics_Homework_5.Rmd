@@ -40,7 +40,8 @@ confidence.upper = deadProp.difference + z.star * deadProp.se; confidence.upper
 The 95% confidence interval for the difference in the proportion who die between males and females is between `r confidence.lower` and `r confidence.upper`.
 
 ###6.204
-*a*
+*(a)*
+
 $H_0: p_t = p_p; H_a: p_t > p_t$
 ```{r}
 size.thc = 79; size.proch = 78
@@ -51,8 +52,9 @@ p.value = thc.test$p.value
 ```
 Since the p-value is $`r p.value`$, which is less than 0.01 per the significance level, we reject the null hypothesis in favor of the alternative hypothesis.
 
-*b*
+*(b)*
 
+It is important that these data come from a well-designed experiment so that the results are clear and so that they cannot be misconstrued.
 
 ###6.248
 
@@ -74,3 +76,21 @@ confidence.upper = fiber.difference + t.star * fiber.se
 ```
 The 95% confidence interval for the difference in number of grams of fiber eaten in a day between males and females is between `r confidence.lower` and `r confidence.upper`.
 No difference between males and females is a plausible option for the population difference in number of grams of fiber eaten because 0 falls within the 95% confidence interval displayed above.
+
+###2.290
+
+Since the group of students are being used for two different tests, this is paired data.
+
+```{r}
+size.total = length(QuizPulse10$Student)
+mean.lecture = mean(QuizPulse10$Lecture)
+mean.quiz = mean(QuizPulse10$Quiz)
+sd.lecture = sd(QuizPulse10$Lecture)
+sd.quiz = sd(QuizPulse10$Quiz)
+mean.difference = mean.lecture - mean.quiz
+sd.difference = sd.lecture - sd.quiz
+t.star = qt(.955, size.total - 1)
+confidence.lower = mean.difference - t.star * sd.difference / sqrt(size.total)
+confidence.upper = mean.difference + t.star * sd.difference / sqrt(size.total)
+```
+The 95% confidence interval for the difference in mean pulse rate between students in a class lecture and taking a quiz is between `r confidence.lower` and `r confidence.upper`.
