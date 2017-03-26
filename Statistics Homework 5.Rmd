@@ -40,5 +40,42 @@ confidence.upper = deadProp.difference + z.star * deadProp.se; confidence.upper
 The 95% confidence interval for the difference in the proportion who die between males and females is between `r confidence.lower` and `r confidence.upper`.
 
 ###6.204
+*a*
+$H_0: p_t = p_p; H_a: p_t > p_t$
+```{r}
+size.thc = 79; size.proch = 78
+effective.thc = 36; effective.proch = 16
+prop.thc = effective.thc / size.thc
+prop.proch = effective.proch / size.proch
+prop.difference = prop.thc - prop.proch; prop.difference
+prop.se = sqrt(
+    (prop.thc * (1 - prop.thc) / size.thc) +
+      (prop.proch * (1 - prop.proch) / size.proch)
+)
+z = prop.difference / prop.se; z
+p.value = pnorm(1 - z)
+```
+Since the p-value is `r p.value` and much greater than 0.01, per the significance level, we reject the alternate hypothesis.
+
+*b*
+
 
 ###6.248
+
+```{r}
+total.male = subset(NutritionStudy, Sex == "Male")$Fiber
+total.female = subset(NutritionStudy, Sex == "Female")$Fiber
+size.male = length(total.male)
+size.female = length(total.female)
+fiber.male = mean(total.male)
+fiber.female = mean(total.female)
+fiber.difference = fiber.male - fiber.female
+fiber.se = sqrt(
+  (sd(total.male)^2/size.male) + 
+    (sd(total.female)^2/size.female));fiber.se
+fiber.df = if(size.male > size.female)  size.male - 1 else size.female - 1
+t.star = qt(.955, fiber.df);t.star
+confidence.lower = fiber.difference - t.star * fiber.se
+confidence.upper = fiber.difference + t.star * fiber.se
+```
+The 95% confidence interval for the difference in number of grams of fiber eaten in a day between males and females is between `r confidence.lower` and `r confidence.upper`.
