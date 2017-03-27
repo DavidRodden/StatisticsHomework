@@ -94,3 +94,35 @@ confidence.lower = mean.difference - t.star * sd.difference / sqrt(size.total)
 confidence.upper = mean.difference + t.star * sd.difference / sqrt(size.total)
 ```
 The 95% confidence interval for the difference in mean pulse rate between students in a class lecture and taking a quiz is between `r confidence.lower` and `r confidence.upper`.
+
+###C.14
+
+*(a)*
+
+$H_0: p_s = p_{ns}; H_a: p_s < p_{ns}$
+```{r}
+prop.test(length(which(NutritionStudy$Smoke == "Yes")), length(NutritionStudy$Smoke), conf.level = 0.95)
+```
+
+*(b)*
+```{r}
+```
+
+*(c)*
+
+
+*(d)*
+
+$H_0: p_m = p_f; H_a: p_m > p_f$
+```{r}
+pop.smoker = subset(NutritionStudy, Smoke == "Yes")
+pop.test = prop.test(length(which(pop.smoker$Sex == "Male")), length(pop.smoker$Sex)
+          , alternative = "less"); pop.test
+p.value = pop.test$p.value
+```
+Considering the p-value is $`r p.value`$.
+
+
+###C.72
+
+$H_0: \mu_c = \mu_s; H_a: \mu_c \neq \mu_s$
