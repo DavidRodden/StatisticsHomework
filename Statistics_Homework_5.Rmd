@@ -105,12 +105,30 @@ prop.test(length(which(NutritionStudy$Smoke == "Yes")), length(NutritionStudy$Sm
 ```
 
 *(b)*
+
+$H_0: \mu = 0; H_a: \mu \neq 0$
 ```{r}
-t.test(NutritionStudy$Fiber)
+fiber.size = length(NutritionStudy$Fiber)
+fiber.sd = sd(NutritionStudy$Fiber)
+fiber.me = qt(0.995, fiber.size - 1) * fiber.sd / sqrt(fiber.size)
+fiber.me
+fiber.test = t.test(NutritionStudy$Fiber); fiber.test
+p.value = fiber.test$p.value
 ```
+Since the p-value is so small $`r p.value`$, we accept the alternative hypothesis that the average number of grams of fiber eaten per day is not 0.
 
 *(c)*
 
+$H_0: \mu = 0; H_a: \mu \neq 0$
+```{r}
+fat.size = length(NutritionStudy$Fat)
+fat.sd = sd(NutritionStudy$Fat)
+fat.me = qt(0.95, fat.size - 1) * fat.sd / sqrt(fat.size)
+fat.me
+fat.test = t.test(NutritionStudy$Fat); fat.test
+p.value = fat.test$p.value
+```
+Since the p-value is so small $`r p.value`$, we accept the alternative hypothesis that the average number of grams of fat eaten per day is not 0.
 
 *(d)*
 
