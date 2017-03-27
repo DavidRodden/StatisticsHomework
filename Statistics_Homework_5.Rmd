@@ -106,6 +106,7 @@ prop.test(length(which(NutritionStudy$Smoke == "Yes")), length(NutritionStudy$Sm
 
 *(b)*
 ```{r}
+t.test(NutritionStudy$Fiber)
 ```
 
 *(c)*
@@ -121,6 +122,21 @@ pop.test = prop.test(length(which(pop.smoker$Sex == "Male")), length(pop.smoker$
 p.value = pop.test$p.value
 ```
 Considering the p-value is $`r p.value`$.
+
+*(e)*
+
+$H_0: \mu_m = \mu_f; H_a: \mu_m \neq \mu_f$
+```{r}
+chol.male = subset(NutritionStudy, Sex == "Male")$Cholesterol
+chol.female = subset(NutritionStudy, Sex == "Female")$Cholesterol
+chol.test = t.test(chol.male, chol.female, alternative = "two.sided")
+chol.test
+p.value = chol.test$p.value; p.value
+```
+According to our t-test, it can be seen that the p-value is $`r p.value`$, which is very small ($< 0.01$), and so the null hypothesis should be rejected in favor of the alternative hypothesis.
+
+*(f)*
+
 
 
 ###C.72
