@@ -133,10 +133,19 @@ chol.test = t.test(chol.male, chol.female, alternative = "two.sided")
 chol.test
 p.value = chol.test$p.value; p.value
 ```
-According to our t-test, it can be seen that the p-value is $`r p.value`$, which is very small ($< 0.01$), and so the null hypothesis should be rejected in favor of the alternative hypothesis.
+According to our t-test, it can be seen that the p-value is $`r p.value`$, which is very small ($< 0.01$), and so the null hypothesis should be rejected in favor of the alternative hypothesis that the difference in mean cholesterol levels by gender is not 0.
 
 *(f)*
 
+$H_0: \mu_s = \mu_{ns}; H_a: \mu_s \neq \mu_{ns}$
+```{r}
+bp.smoker = subset(NutritionStudy, Smoke = "Yes")$BetaPlasma
+bp.nonsmoker = subset(NutritionStudy, Smoke = "No")$BetaPlasma
+bp.test = t.test(bp.smoker, bp.nonsmoker, alternative = "two.sided")
+bp.test
+p.value = bp.test$p.value; p.value
+```
+According to our t-test, it can be seen that the p-value is `r p.value`, which is very large, and so the alternative hypothesis is rejected and the null hypothesis that there is no difference in mean level of beta carotene in the blood between smokers & non-smokers is accepted.
 
 
 ###C.72
