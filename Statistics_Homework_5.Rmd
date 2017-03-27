@@ -99,10 +99,14 @@ The 95% confidence interval for the difference in mean pulse rate between studen
 
 *(a)*
 
-$H_0: p_s = p_{ns}; H_a: p_s < p_{ns}$
+$H_0: p_s = 0.5; H_a: p_s \neq 0.5$
 ```{r}
-prop.test(length(which(NutritionStudy$Smoke == "Yes")), length(NutritionStudy$Smoke), conf.level = 0.95)
+total.size = length(NutritionStudy$Smoke)
+smoke.size = length(subset(NutritionStudy, Smoke == "Yes")$Smoke)
+smoke.test = prop.test(smoke.size, total.size, conf.level = 0.95)
+p.value = smoke.test$p.value
 ```
+Since the p-value is so small $`r p.value`$, we accept the alternative hypothesis that the percent of people that smoke is not 50%, and reject the null hypothesis.
 
 *(b)*
 
@@ -112,7 +116,7 @@ fiber.size = length(NutritionStudy$Fiber)
 fiber.sd = sd(NutritionStudy$Fiber)
 fiber.me = qt(0.995, fiber.size - 1) * fiber.sd / sqrt(fiber.size)
 fiber.me
-fiber.test = t.test(NutritionStudy$Fiber); fiber.test
+fiber.test = t.test(NutritionStudy$Fiber, conf.level = 0.99); fiber.test
 p.value = fiber.test$p.value
 ```
 Since the p-value is so small $`r p.value`$, we accept the alternative hypothesis that the average number of grams of fiber eaten per day is not 0.
@@ -125,7 +129,7 @@ fat.size = length(NutritionStudy$Fat)
 fat.sd = sd(NutritionStudy$Fat)
 fat.me = qt(0.95, fat.size - 1) * fat.sd / sqrt(fat.size)
 fat.me
-fat.test = t.test(NutritionStudy$Fat); fat.test
+fat.test = t.test(NutritionStudy$Fat, conf.level = 0.90); fat.test
 p.value = fat.test$p.value
 ```
 Since the p-value is so small $`r p.value`$, we accept the alternative hypothesis that the average number of grams of fat eaten per day is not 0.
