@@ -7,12 +7,23 @@ output: pdf_document
 
 ```{r setup, include=F}
 knitr::opts_chunk$set(echo = TRUE)
+library("Lock5withR", lib.loc="~/R/win-library/3.3")
+library("mosaic", lib.loc="~/R/win-library/3.3")
 ```
 
 ###7.25
 
+$H_0: p_1=0.301, p_2=0.176, p_3=0.125, p_4=0.097, p_5=0.079, p_6=0.067, p_7=0.058, p_8=0.051, p_9=0.046$
+$H_{a}:$ At least one of the proportions is different from Benford's law
+```{r}
+phs = cbind(c(102, 103), c(10933, 10845))
+xc = xchisq.test(Benford$Address, p = c(0.301, 0.176, 0.125, 0.097, 0.079, 0.067, 0.058, 0.051, 0.046))
+xc$observed
+xc$expected
+```
 
 ###7.26
+
 
 
 ###7.29
