@@ -48,7 +48,7 @@ p.value = xt$p.value; p.value
 xsq = xt$statistic; xsq
 df = xt$parameter; df
 ```
-We find that the p-value $\approx `r p.value`$, which is very large. So, we have no substantial evidence that the eighth digits of SSN are not random.
+We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom. This is very large, so, we have no substantial evidence that the eighth digits of SSN are not random.
 
 ###7.42
 
