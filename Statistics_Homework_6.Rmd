@@ -14,20 +14,20 @@ library("mosaic", lib.loc="~/R/win-library/3.3")
 ###7.25
 
 $H_0: p_1=0.301, p_2=0.176, p_3=0.125, p_4=0.097, p_5=0.079, p_6=0.067, p_7=0.058, p_8=0.051, p_9=0.046$
-$H_{a}:$ At least one of the proportions is different from Benford's law
+$H_a:$ At least one of the proportions is different from Benford's law
 ```{r}
 xt = xchisq.test(Benford$Address, p = Benford$BenfordP)
 p.value = xt$p.value; p.value
 xsq = xt$statistic; xsq
 df = xt$parameter; df
 ```
-We find that the p-value $\approx$ `r p.value` using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom.
+We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom.
 This is not a small p-value, so we do not have enough evidence that the first digits of street addresses in a phone book do not follow Benford's law.
 
 ###7.26
 
 $H_0: p_1=0.301, p_2=0.176, p_3=0.125, p_4=0.097, p_5=0.079, p_6=0.067, p_7=0.058, p_8=0.051, p_9=0.046$
-$H_{a}:$ At least one of the proportions is different from Benford's law
+$H_a:$ At least one of the proportions is different from Benford's law
 ```{r}
 xt = xchisq.test(Benford$Invoices, p = Benford$BenfordP)
 p.value = xt$p.value; p.value
@@ -41,7 +41,7 @@ This is a very small p-value, so we have enough evidence that the first digit of
 
 $H_0: p_0 = p_1 = p_2 = p_3 = ... = p_8 = p_9 = 0.10$
 
-$H_{a}:$ Some $p_i \neq 0.10$
+$H_a:$ Some $p_i \neq 0.10$
 ```{r}
 xt = xchisq.test(table(Digits$SSN8))
 p.value = xt$p.value; p.value
@@ -51,14 +51,27 @@ df = xt$parameter; df
 We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom. This is very large, so, we have no substantial evidence that the eighth digits of SSN are not random.
 
 ###7.42
+$H_0:$ Location is associated with the proportion of big houses
 
-
-###7.54
+$H_a:$ Location is not associated with the proportion of big houses
 
 ```{r}
-xt = xchisq.test(NutritionStudy$Sex, NutritionStudy$PriorSmoke)
+xt = xchisq.test(tally(Size > 2.7 ~ State, data = HomesForSale))
 p.value = xt$p.value; p.value
 xsq = xt$statistic; xsq
 df = xt$parameter; df
 ```
-We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom. This is small p-value, so, we have evidence that there is a significant association between **Sex** and **PriorSmoke**.
+We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom. This is not a small p-value, so we have no substantial evidence that location is not associated with the proportion of big houses.
+
+###7.54
+
+$H_0:$ Both **Gender** and **PriorSmoke** are related
+
+$H_a:$ Both **Gender** and **PriorSmoke** are not related
+```{r}
+xt = xchisq.test(NutritionStudy$Gender, NutritionStudy$PriorSmoke)
+p.value = xt$p.value; p.value
+xsq = xt$statistic; xsq
+df = xt$parameter; df
+```
+We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom. This is small p-value, so, we have evidence that there is no significant association between **Gender** and **PriorSmoke**.
