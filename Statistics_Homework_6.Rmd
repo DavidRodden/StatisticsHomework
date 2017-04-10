@@ -16,9 +16,7 @@ library("mosaic", lib.loc="~/R/win-library/3.3")
 $H_0: p_1=0.301, p_2=0.176, p_3=0.125, p_4=0.097, p_5=0.079, p_6=0.067, p_7=0.058, p_8=0.051, p_9=0.046$
 $H_{a}:$ At least one of the proportions is different from Benford's law
 ```{r}
-phs = cbind(c(102, 103), c(10933, 10845))
-xt = xchisq.test(Benford$Address, 
-                 p = c(0.301, 0.176, 0.125, 0.097, 0.079, 0.067, 0.058, 0.051, 0.046))
+xt = xchisq.test(Benford$Address, p = Benford$BenfordP)
 p.value = xt$p.value; p.value
 xsq = xt$statistic; xsq
 df = xt$parameter; df
@@ -28,7 +26,14 @@ This is not a small p-value, so we do not have enough evidence that the first di
 
 ###7.26
 
-
+```{r}
+xt = xchisq.test(Benford$Invoices, Benford$BenfordP)
+p.value = xt$p.value; p.value
+xsq = xt$statistic; xsq
+df = xt$parameter; df
+```
+We find that the p-value $\approx$ `r p.value` using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom.
+This is not a small p-value, so we do not have enough evidence that the first digit of invoices do not follow Benford's law.
 
 ###7.29
 
