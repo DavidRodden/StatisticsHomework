@@ -54,3 +54,11 @@ We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xs
 
 
 ###7.54
+
+```{r}
+xt = xchisq.test(NutritionStudy$Sex, NutritionStudy$PriorSmoke)
+p.value = xt$p.value; p.value
+xsq = xt$statistic; xsq
+df = xt$parameter; df
+```
+We find that the p-value $\approx `r p.value`$ using the upper tail beyond `r xsq` of a chi-square distribution with `r df` degrees of freedom. This is small p-value, so, we have evidence that there is a significant association between **Sex** and **PriorSmoke**.
