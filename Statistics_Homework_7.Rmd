@@ -28,8 +28,11 @@ The p-value from the ANOVA, $\approx `r p.value`$, is very small. Therefore, we 
 
 *(a)*
 ```{r}
-verify = favstats(GillRate ~ Calcium, data = FishGills3); verify
-boxplot(GillRate ~ Calcium, data = FishGills3)
+cal = factor(FishGills3$Calcium)
+gil = FishGills3$GillRate
+dat = data.frame(cal,gil)
+verify = favstats(gil ~ cal, data = dat); verify
+boxplot(gil ~ cal, data = dat)
 ```
 As $n_i \geq 30$ for all i, the std devs are good.
 
@@ -44,10 +47,9 @@ As the test is sufficient as mentioned in part *(a)*, we can test to find the AN
 
 ###8.52
 
-
 ```{r}
-mean(GillRate ~ Calcium, data = FishGills3)
-tukey = TukeyHSD(lm(GillRate ~ Calcium, data = FishGills3)); tukey
+mean(gil ~ cal, data = dat)
+tukey = TukeyHSD(lm(gil ~ cal, data = dat)); tukey
 ```
 In **8.32**, the ANOVA table indicated that the mean gill rates differed due to the calcium levels. We can see that High and Medium calicum means are very close to one another, the difference in means being only `r tukey$Calcium[2]`. However, the difference between low & medium and low & high are quite different, `r tukey$Calcium[1]` and `r tukey$Calcium[3]` respectively. So, it is evident that low calcium levels lead to a drastically different mean.
 
@@ -93,6 +95,6 @@ Without looking at the data, there is no way of knowing for sure. However, the s
 ###D.38
 
 ```{r}
-favstats(Price ~ State, data = HomesForSale)
+stats = favstats(Price ~ State, data = HomesForSale); stats
 ```
-The conditions for ANOVA are met as $n_i \geq 30$ for all i, the std devs are good.
+$n_i \geq 30$ for all i. However, since none of the standard devs. can be larger than twice that of any other standard dev., (`r stats$"sd"[1]` & any other in this case) the conditions for ANOVA are not met.
