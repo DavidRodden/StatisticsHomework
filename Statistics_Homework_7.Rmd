@@ -22,7 +22,7 @@ As $n_i \geq 30$ for all i, the std devs are good.
 
 $H_0: \mu_1 = \mu_2 = \mu_3; H_a: \mu_i \neq \mu_j$
 
-The p-value from the ANOVA, $`r p.value`$, is very small. Therefore, we have strong evidence that at least one of the award groups has a mean exercise rate that differs from at least one of the other groups.
+The p-value from the ANOVA, $\approx `r p.value`$, is very small. Therefore, we have strong evidence that at least one of the award groups has a mean exercise rate that differs from at least one of the other groups.
 
 ###8.32
 
@@ -40,7 +40,7 @@ p.value = anova$"Pr(>F)"[1]
 ```
 $H_0: \mu_1 = \mu_2 = \mu_3; H_a: \mu_i \neq \mu_j$
 
-As the test is sufficient as mentioned in part *(a)*, we can test to find the ANOVA table. The p-value from the ANOVA, $`r p.value`$, is very small. Therefore, we have strong evidence that at least one of the calcium rates has a gill beat rate that differs from at least one of the other groups.
+As the test is sufficient as mentioned in part *(a)*, we can test to find the ANOVA table. The p-value from the ANOVA, $\approx `r p.value`$, is very small. Therefore, we have strong evidence that at least one of the calcium rates has a gill beat rate that differs from at least one of the other groups.
 
 ###8.52
 
@@ -53,9 +53,43 @@ In **8.32**, the ANOVA table indicated that the mean gill rates differed due to 
 
 ###D.36
 
+*(a)*
+
+$H_0: \mu_{grades} = \mu_{sports} = \mu_{popular}; H_a: \mu_i \neq \mu_j$
+```{r}
+importance = matrix(c(117, 60, 50, 130, 30, 91), ncol = 3, byrow = T)
+colnames(importance) = c("Grades", "Sports", "Popular")
+rownames(importance) = c("Boy", "Girl")
+importance = as.table(importance); importance
+importance.summary = summary(importance); importance.summary
+p.value = importance.summary$p.value
+importance[1,]
+```
+Since the p-value is  $\approx `r p.value`$ and is very small, we can reject the null hypothesis and have strong evidence that grades, sports, and popularity are not equally valued among middle school students in these school districts.
+
+*(b)*
+
+
 
 ###D.37
 
+*(a)*
+
+$H_0: \mu_{CA} = \mu_{NY} = \mu_{NJ} = \mu_{PA}; H_a: \mu_i \neq \mu_j$
+Null hypothesis is that all state average home prices are equal while the alternative is that there exist at least two states with different means.
+
+*(b)*
+
+As there are k = 4 states, the degrees of freedom, df = k - 1 = 4 - 1 = 3.
+
+*(c)*
+
+The overall sample size, n, is 120 homes. The denominator degrees of freedom is n - k = 120 - 4 = 116.
+
+*(d)*
+
+Without looking at the data, there is no way of knowing for sure. However, the sum of squares for error will most likely be greater than the sum of squares for groups. This is due to the fact that the sum of squares will be divided by 116 to standardize it and the sum of squares group will be divded by 3.
 
 ###D.38
+
 
