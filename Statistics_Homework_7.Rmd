@@ -15,10 +15,10 @@ library("mosaic", lib.loc="~/R/win-library/3.3")
 
 ```{r}
 favstats(Pulse ~ Award, data = StudentSurvey)
-anova = anova(lm(Pulse ~ Award, StudentSurvey)); anova
-p.value = anova$"Pr(>F)"[1]
+anov = anova(lm(Pulse ~ Award, StudentSurvey)); anov
+p.value = anov$"Pr(>F)"[1]
 ```
-As $n_i \geq 30$ for all i, the std devs are good.
+As $n_i \geq 30$ for all i and none of the standard devs. are greater than twice that of any other, the conditions are met.
 
 $H_0: \mu_1 = \mu_2 = \mu_3; H_a: \mu_i \neq \mu_j$
 
@@ -57,7 +57,25 @@ In **8.32**, the ANOVA table indicated that the mean gill rates differed due to 
 
 *(a)*
 
-$H_0: \mu_{grades} = \mu_{sports} = \mu_{popular}; H_a: \mu_i \neq \mu_j$
+$H_0:$ Grades, sports, and popularity are equally valued among middle school students in these school districts.
+
+$H_a:$ Grades, sports, and popularity are not equally valued among middle school students in these school districts.
+```{r}
+importance = matrix(c(117 + 130, 60 + 30, 50 + 91), ncol = 3, byrow = T)
+colnames(importance) = c("Grades", "Sports", "Popular")
+rownames(importance) = c("Students")
+importance = as.table(importance); importance
+importance.summary = summary(importance); importance.summary
+p.value = importance.summary$p.value
+```
+Since the p-value is  $\approx `r p.value`$ and is very small, we can reject the null hypothesis and have strong evidence that grades, sports, and popularity are not equally valued among middle school students in these school districts.
+
+*(b)*
+
+$H_0:$ Middle school boys and girls have similar priorities regarding grades, sports, and popularity.
+
+$H_a:$ Middle school boys and girls have different priorities regarding grades, sports, and popularity.
+
 ```{r}
 importance = matrix(c(117, 60, 50, 130, 30, 91), ncol = 3, byrow = T)
 colnames(importance) = c("Grades", "Sports", "Popular")
@@ -65,13 +83,8 @@ rownames(importance) = c("Boy", "Girl")
 importance = as.table(importance); importance
 importance.summary = summary(importance); importance.summary
 p.value = importance.summary$p.value
-importance[1,]
 ```
-Since the p-value is  $\approx `r p.value`$ and is very small, we can reject the null hypothesis and have strong evidence that grades, sports, and popularity are not equally valued among middle school students in these school districts.
-
-*(b)*
-
-
+Since the p-value is  $\approx `r p.value`$ and is very small, we can reject the null hypothesis and have strong evidence that middle school boys and girls have different priorities regarding grades, sports, and popularity.
 
 ###D.37
 
