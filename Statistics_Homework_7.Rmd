@@ -22,7 +22,7 @@ As $n_i \geq 30$ for all i, the std devs are good.
 
 $H_0: \mu_1 = \mu_2 = \mu_3; H_a: \mu_i \neq \mu_j$
 
-The p-value from the ANOVA, $`r p.value`$ is very small. Therefore, we have strong evidence that at least one of the award groups has a mean exercise rate that differs from at least one of the other groups.
+The p-value from the ANOVA, $`r p.value`$, is very small. Therefore, we have strong evidence that at least one of the award groups has a mean exercise rate that differs from at least one of the other groups.
 
 ###8.32
 
@@ -38,6 +38,10 @@ As $n_i \geq 30$ for all i, the std devs are good.
 anova = anova(lm(GillRate ~ Calcium, FishGills3)); anova
 p.value = anova$"Pr(>F)"[1]
 ```
+$H_0: \mu_1 = \mu_2 = \mu_3; H_a: \mu_i \neq \mu_j$
+
+As the test is sufficient as mentioned in part *(a)*, we can test to find the ANOVA table. The p-value from the ANOVA, $`r p.value`$, is very small. Therefore, we have strong evidence that at least one of the calcium rates has a gill beat rate that differs from at least one of the other groups.
+
 ###8.52
 
 
