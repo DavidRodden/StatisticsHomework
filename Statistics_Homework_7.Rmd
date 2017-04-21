@@ -28,7 +28,7 @@ The p-value from the ANOVA, $`r p.value`$, is very small. Therefore, we have str
 
 *(a)*
 ```{r}
-favstats(GillRate ~ Calcium, data = FishGills3)
+verify = favstats(GillRate ~ Calcium, data = FishGills3); verify
 boxplot(GillRate ~ Calcium, data = FishGills3)
 ```
 As $n_i \geq 30$ for all i, the std devs are good.
@@ -44,6 +44,12 @@ As the test is sufficient as mentioned in part *(a)*, we can test to find the AN
 
 ###8.52
 
+
+```{r}
+mean(GillRate ~ Calcium, data = FishGills3)
+tukey = TukeyHSD(lm(GillRate ~ Calcium, data = FishGills3)); tukey
+```
+In **8.32**, the ANOVA table indicated that the mean gill rates differed due to the calcium levels. We can see that High and Medium calicum means are very close to one another, the difference in means being only `r tukey$Calcium[2]`. However, the difference between low & medium and low & high are quite different, `r tukey$Calcium[1]` and `r tukey$Calcium[3]` respectively. So, it is evident that low calcium levels lead to a drastically different mean.
 
 ###D.36
 
