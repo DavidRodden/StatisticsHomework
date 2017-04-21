@@ -92,4 +92,7 @@ Without looking at the data, there is no way of knowing for sure. However, the s
 
 ###D.38
 
-
+```{r}
+favstats(Price ~ State, data = HomesForSale)
+```
+The conditions for ANOVA are met as $n_i \geq 30$ for all i, the std devs are good.
