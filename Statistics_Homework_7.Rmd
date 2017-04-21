@@ -1,0 +1,51 @@
+---
+title: "Statistics Homework 7"
+author: "David Rodden"
+date: "April 20, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library("Lock5withR", lib.loc="~/R/win-library/3.3")
+library("mosaic", lib.loc="~/R/win-library/3.3")
+```
+
+###8.31
+
+```{r}
+favstats(Pulse ~ Award, data = StudentSurvey)
+anova = anova(lm(Pulse ~ Award, StudentSurvey)); anova
+p.value = anova$"Pr(>F)"[1]
+```
+As $n_i \geq 30$ for all i, the std devs are good.
+
+$H_0: \mu_1 = \mu_2 = \mu_3; H_a: \mu_i \neq \mu_j$
+
+The p-value from the ANOVA, $`r p.value`$ is very small. Therefore, we have strong evidence that at least one of the award groups has a mean exercise rate that differs from at least one of the other groups.
+
+###8.32
+
+*(a)*
+```{r}
+favstats(GillRate ~ Calcium, data = FishGills3)
+boxplot(GillRate ~ Calcium, data = FishGills3)
+```
+As $n_i \geq 30$ for all i, the std devs are good.
+
+*(b)*
+```{r}
+anova = anova(lm(GillRate ~ Calcium, FishGills3)); anova
+p.value = anova$"Pr(>F)"[1]
+```
+###8.52
+
+
+###D.36
+
+
+###D.37
+
+
+###D.38
+
