@@ -1,0 +1,10 @@
+---
+title: "Statistics Homework 8"
+author: "David Rodden"
+date: "April 25, 2017"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
