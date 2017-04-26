@@ -30,14 +30,17 @@ summary(model)
 *(a)*
 
 ```{r}
-tv.model = t.test(~TV, data = ExerciseHours); tv.model
+t.test(ExerciseHours$TV, ExerciseHours$Exercise)
 ```
 
 *(b)*
 
 ```{r}
-coef(tv.model)
+tv.model = lm(TV ~ Exercise, data = ExerciseHours); tv.model
+tv.anova = anova(tv.model)
 ```
+$H_0: \rho = 0; H_a: \rho \neq 0$
+As calculated above, the p-value from this test is `r tv.anova$p.value`, which is very small, so we reject the null hypothesis with strong evidence that hours of exercise and hours of TV watched do not have a linear relationship.
 
 *(c)*
 
@@ -46,6 +49,10 @@ cor.model = cor.test(ExerciseHours$TV, ExerciseHours$Exercise); cor.model
 ```
 $H_0: \rho = 0; H_a: \rho \neq 0$
 As calculated above, the p-value from this test is `r cor.model$p.value`, which is very small, so we reject the null hypothesis with strong evidence that hours of exercise and hours of TV watched do not have a linear relationship.
+
+*(d)*
+
+The results for tests *(b)* and *(c)* were similar, as they both had the same hypothesis, $H_0: \rho = 0; H_a: \rho \neq 0$. They reject the null hypothesis with strong evidence that hours of exercise and hours of TV watched do not have a linear relationship.
 
 
 ###9.64
