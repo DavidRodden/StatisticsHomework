@@ -29,3 +29,35 @@ summary(model)
 
 
 ###9.64
+*(a)*
+
+```{r}
+xyplot(Price ~ Size, data = HomesForSaleNY, pch = 16, col = "black", 
+       lwd = 2, level = .9, panel=panel.lmbands, band.lty=c(2,3),
+       band.col=c("blue","forestgreen"), band.lwd=2)
+```
+Square footage is an effective predictor of price as 27/30 = 90% of data points are within the green bands.
+
+*(b)*
+
+```{r}
+homes = lm(Price ~ Size, data=HomesForSaleNY); homes
+homes.2kpe = coef(homes)["(Intercept)"] + 2 * coef(homes)["Size"]; homes.2kpe
+```
+A point estimate for the price of a 2000-square-foot New York home is $\$`r homes.2kpe * 1000`$.
+
+*(c)*
+
+```{r}
+home.confint = predict(homes, as.data.frame(cbind(Size = 2)), interval = "confidence", level = .9)
+home.confint
+```
+The confidence interval for the price of a specific 2000-square foot New York home is `r home.confint[2]` and `r home.confint[3]` respectively.
+
+*(d)*
+
+```{r}
+home.predint = predict(homes, as.data.frame(cbind(Size = 2)), interval = "prediction", level = .9)
+home.predint
+```
+The prediction interval for the price of a specific 2000-square-foot New York home is `r home.predint[2]` and `r home.predint[3]` respectively.
