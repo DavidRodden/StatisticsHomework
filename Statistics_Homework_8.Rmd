@@ -21,9 +21,36 @@ The scatterplot provided by **FloridaLakes** has a departure from linearity. Tha
 *(a)*
 
 ```{r}
-model = lm(WinPct ~ PtsFor, data = NBAStandings)
-summary(model)
+xyplot(WinPct ~ PtsFor, data = NBAStandings)
+xyplot(WinPct ~ PtsAgainst, data = NBAStandings)
 ```
+Both graphs aren't curved, have no increasing/decreasing variability, and have no significant outliers. Hence, the conditions for fitting a linear model appear to be met.
+
+*(b)*
+
+```{r}
+lm.ptsfor = lm(WinPct ~ PtsFor, data = NBAStandings); lm.ptsfor
+predict(lm.ptsfor)
+```
+The prediction equation is `r coef(lm.ptsfor)["(Intercept)"]` + `r coef(lm.ptsfor)["PtsFor"]`x. PtsFor is an effective predictor.
+
+*(c)*
+
+```{r}
+lm.ptsagainst = lm(WinPct ~ PtsAgainst, data = NBAStandings); lm.ptsagainst
+predict(lm.ptsagainst)
+```
+The prediction equation is `r coef(lm.ptsagainst)["(Intercept)"]` + `r coef(lm.ptsagainst)["PtsAgainst"]`x. PtsFor is not nearly as effective of a predictor compared to PtsFor.
+
+*(d)*
+
+```{r}
+winpct.ptsfor = coef(lm.ptsfor)["(Intercept)"] + coef(lm.ptsfor)["PtsFor"] * 100.2
+winpct.ptsfor
+winpct.ptsagainst = coef(lm.ptsagainst)["(Intercept)"] + coef(lm.ptsagainst)["PtsAgainst"] * 100.2
+winpct.ptsagainst
+```
+The predicted winning percentages for the Mavericks using each of the models in *(b)* and *(c)* are `r winpct.ptsfor * 100` and `r winpct.ptsagainst * 100` respectively.
 
 ###9.50
 
