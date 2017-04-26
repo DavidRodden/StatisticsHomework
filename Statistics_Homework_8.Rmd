@@ -27,6 +27,26 @@ summary(model)
 
 ###9.50
 
+*(a)*
+
+```{r}
+tv.model = t.test(~TV, data = ExerciseHours); tv.model
+```
+
+*(b)*
+
+```{r}
+coef(tv.model)
+```
+
+*(c)*
+
+```{r}
+cor.model = cor.test(ExerciseHours$TV, ExerciseHours$Exercise); cor.model
+```
+$H_0: \rho = 0; H_a: \rho \neq 0$
+As calculated above, the p-value from this test is `r cor.model$p.value`, which is very small, so we reject the null hypothesis with strong evidence that hours of exercise and hours of TV watched do not have a linear relationship.
+
 
 ###9.64
 *(a)*
