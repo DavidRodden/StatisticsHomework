@@ -7,4 +7,20 @@ output: pdf_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+library("Lock5withR", lib.loc="~/R/win-library/3.3")
+library("mosaic", lib.loc="~/R/win-library/3.3")
 ```
+###9.22
+```{r}
+xyplot(AvgMercury ~ Alkalinity, data = FloridaLakes)
+```
+The scatterplot provided by **FloridaLakes** has a departure from linearity. That is, it has a trend that is clearly decreasing, but not in a linear fashion.
+
+
+###9.26
+
+
+###9.50
+
+
+###9.64
