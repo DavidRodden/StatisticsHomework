@@ -12,13 +12,18 @@ library("mosaic", lib.loc="~/R/win-library/3.3")
 ```
 ###9.22
 ```{r}
-xyplot(AvgMercury ~ Alkalinity, data = FloridaLakes)
+xyplot(AvgMercury ~ Alkalinity, data = FloridaLakes, type = c("p", "r"), pch = 16, col = "black")
 ```
 The scatterplot provided by **FloridaLakes** has a departure from linearity. That is, it has a trend that is clearly decreasing, but not in a linear fashion.
 
 
 ###9.26
+*(a)*
 
+```{r}
+model = lm(WinPct ~ PtsFor, data = NBAStandings)
+predict(model)
+```
 
 ###9.50
 
