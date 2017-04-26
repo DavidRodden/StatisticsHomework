@@ -69,14 +69,17 @@ Since $R^2$ is a statistical measure of how close the data are to the regression
 *(a)*
 
 ```{r}
-t.test(ExerciseHours$TV, ExerciseHours$Exercise)
+tv.t.test = t.test(~TV, data = ExerciseHours); tv.t.test
+tv.p.value = tv.t.test$p.value
 ```
+$H_0: \mu = 0; H_a: \mu \neq 0$
+As calculated, above, the p-value from this test is $`r tv.p.value`$, which is extremely small, so we reject the null hypothesis with strong evidence that the mean of TV data is not 0.
 
 *(b)*
 
 ```{r}
 tv.model = lm(TV ~ Exercise, data = ExerciseHours); tv.model
-tv.anova = anova(tv.model)
+tv.anova = anova(tv.model); tv.anova
 ```
 $H_0: \rho = 0; H_a: \rho \neq 0$
 As calculated above, the p-value from this test is `r tv.anova$p.value`, which is very small, so we reject the null hypothesis with strong evidence that hours of exercise and hours of TV watched do not have a linear relationship.
