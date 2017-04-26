@@ -22,7 +22,7 @@ The scatterplot provided by **FloridaLakes** has a departure from linearity. Tha
 
 ```{r}
 model = lm(WinPct ~ PtsFor, data = NBAStandings)
-predict(model)
+summary(model)
 ```
 
 ###9.50
