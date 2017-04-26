@@ -52,6 +52,18 @@ winpct.ptsagainst
 ```
 The predicted winning percentages for the Mavericks using each of the models in *(b)* and *(c)* are `r winpct.ptsfor * 100` and `r winpct.ptsagainst * 100` respectively.
 
+*(e)*
+
+PtsFor represents the average points scored per game while PtsAgainst represents the average points allowed per game. There is a positive correlation between the proportion of games won and the average points scored per game, hence PtsFor appears to be more effective at explaining winning percentages for NBA teams.
+
+*(f)*
+
+```{r}
+rsquared(lm.ptsfor)
+rsquared(lm.ptsagainst)
+```
+Since $R^2$ is a statistical measure of how close the data are to the regression line, PtsAgainst has a higher value than PtsFor, meaning that it is more explaining winning percentages for NBA teams.
+
 ###9.50
 
 *(a)*
